@@ -1,0 +1,176 @@
+.content {
+  padding-top: 10px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.story-form-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.story-form-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.story-title {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.story-subtitle {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding-top: 5px;
+  }
+
+  .story-form-wrapper {
+    margin: 0 10px;
+    padding: 1rem;
+  }
+
+  .story-title {
+    font-size: 1.5rem;
+  }
+
+  .story-form-header {
+    margin-bottom: 1rem;
+  }
+}
+
+.form-wrapper {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.content__heading {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.form-container {
+  padding: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #34495e;
+  font-weight: 500;
+}
+
+textarea {
+  width: 100%;
+  min-height: 150px;
+  padding: 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+textarea:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+.upload-container {
+  text-align: center;
+}
+
+.upload-label {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background: #3498db;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.upload-label:hover {
+  background: #2980b9;
+}
+
+.upload-label i {
+  margin-right: 8px;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.photo-preview {
+  max-width: 100%;
+  height: auto;
+  margin-top: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.location-group {
+  margin: 1.5rem 0;
+}
+
+.location-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.location-text {
+  margin-left: 8px;
+  color: #34495e;
+}
+
+.location-text i {
+  margin-right: 8px;
+  color: #e74c3c;
+}
+
+.map-container {
+  margin: 1rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.submit-button {
+  width: 100%;
+  padding: 1rem;
+  background: #2ecc71;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.submit-button:hover {
+  background: #27ae60;
+}
+
+.submit-button i {
+  margin-right: 8px;
+} 
