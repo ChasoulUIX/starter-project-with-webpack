@@ -43,7 +43,8 @@ class App {
       const navItems = [
         { href: '#/', text: 'Home' },
         { href: '#/add', text: 'Add Story' },
-        { href: '#/maps', text: 'Maps' }
+        { href: '#/maps', text: 'Maps' },
+        { href: '#/profile', text: 'Profile' }
       ];
       
       navItems.forEach(item => {

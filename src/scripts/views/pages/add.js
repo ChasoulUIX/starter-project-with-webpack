@@ -45,18 +45,39 @@ const Add = {
 
                 <div class="story-form-right">
                   <div class="form-group upload-section">
+                    <div class="upload-options">
+                      <button type="button" class="upload-option camera-option" id="cameraButton">
+                        <i class="fas fa-camera"></i>
+                        <span>Ambil Foto</span>
+                      </button>
+                      <div class="option-divider">atau</div>
+                      <button type="button" class="upload-option gallery-option" id="galleryButton">
+                        <i class="fas fa-images"></i>
+                        <span>Pilih dari Galeri</span>
+                      </button>
+                    </div>
+
                     <div class="upload-area" id="uploadArea">
-                      <label for="photo" class="upload-label">
-                        <div class="upload-content">
-                          <i class="fas fa-camera-retro"></i>
-                          <span class="upload-text">Pilih Foto</span>
-                          <span class="upload-hint">Klik atau seret foto ke sini</span>
-                        </div>
-                      </label>
-                      <input type="file" id="photo" name="photo" accept="image/*" required>
+                      <input type="file" 
+                        id="photo" 
+                        name="photo" 
+                        accept="image/*" 
+                        capture="environment"
+                        style="display: none;" 
+                        required>
+                      <input type="file" 
+                        id="gallery" 
+                        name="photo" 
+                        accept="image/*" 
+                        style="display: none;" 
+                        required>
                     </div>
                     <div class="preview-container">
                       <img id="photoPreview" class="photo-preview" style="display: none;">
+                      <button type="button" id="retakeButton" class="retake-button" style="display: none;">
+                        <i class="fas fa-redo"></i>
+                        Ambil Ulang
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -83,22 +104,55 @@ const Add = {
     }
 
     const form = document.querySelector('#addStoryForm');
-    const photoInput = document.querySelector('#photo');
+    const cameraInput = document.querySelector('#photo');
+    const galleryInput = document.querySelector('#gallery');
     const photoPreview = document.querySelector('#photoPreview');
+    const cameraButton = document.querySelector('#cameraButton');
+    const galleryButton = document.querySelector('#galleryButton');
+    const retakeButton = document.querySelector('#retakeButton');
     const useLocationCheckbox = document.querySelector('#useLocation');
     const mapContainer = document.querySelector('#mapContainer');
     let map = null;
     let userLocation = null;
+    let currentInput = null;
 
-    photoInput.addEventListener('change', (event) => {
+    // Handle camera button click
+    cameraButton.addEventListener('click', () => {
+      cameraInput.click();
+      currentInput = cameraInput;
+    });
+
+    // Handle gallery button click
+    galleryButton.addEventListener('click', () => {
+      galleryInput.click();
+      currentInput = galleryInput;
+    });
+
+    // Handle file selection (both camera and gallery)
+    const handleFileSelect = (event) => {
       const file = event.target.files[0];
       if (file) {
         const reader = new FileReader();
         reader.onload = (e) => {
           photoPreview.src = e.target.result;
           photoPreview.style.display = 'block';
+          retakeButton.style.display = 'flex';
+          document.querySelector('.upload-options').style.display = 'none';
         };
         reader.readAsDataURL(file);
+      }
+    };
+
+    cameraInput.addEventListener('change', handleFileSelect);
+    galleryInput.addEventListener('change', handleFileSelect);
+
+    // Handle retake button
+    retakeButton.addEventListener('click', () => {
+      photoPreview.style.display = 'none';
+      retakeButton.style.display = 'none';
+      document.querySelector('.upload-options').style.display = 'flex';
+      if (currentInput) {
+        currentInput.value = '';
       }
     });
 
@@ -128,7 +182,7 @@ const Add = {
       event.preventDefault();
 
       const description = document.querySelector('#description').value;
-      const photo = photoInput.files[0];
+      const photo = cameraInput.files[0] || galleryInput.files[0];
 
       try {
         const storyApi = new StoryApi();
